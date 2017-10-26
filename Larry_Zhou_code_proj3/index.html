@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<h1>template taken from HTML5 Webtemplates.co.uk</h1>
+		<title> </title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body>
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+				<header class="major">
+					<h2>CS 194-26 Project 3</h2>
+					<p>by Larry Zhou</p>
+				</header>
+				<div class="container">
+						
+					<!-- Content -->
+						<section id="content">
+
+							<!-- Text -->
+								<section>
+									<h3>Overview</h3>
+									This project implemented pixel manipulation as well as laplacian and gaussian stacks. It was pretty interesting how we were able to blend images together using a mask to assist in the process.   </p>
+
+									<hr />
+									
+									<header>
+										<h3>Part 1</h3>
+									</header>
+									<p>We started with unblurring images using a gaussian filter. This process was pretty straightforward. We took a gaussian filter, subtracted it from the original image, scaled it, then added it back to the original image. In Part 1.2, we created a hybrid image using the high and low frequencies of two images. When close up, the high frequency image is more visible. At a far away distance, the low frequency image becomes visible. In 1.3, we simply applied gaussian and lapalcian stacks to the previous concept. By doing so, we can break down an image into its two separate components. Finally, in Part 1.4, we combined everything in order to create a blended image using least squares. I used the orange apple example to debug, and created my own example using a sun and moon image. We essentially splined the images at the boundary so that there was a smooth transition between the two halves. </p>
+
+								</section>
+
+							<!-- Image -->
+								<section>
+									<h3>JPG</h3>
+									<div class="box alt">
+										<div class="row 50% uniform">
+											<div align="center"><span class="image fit"><img src="David.jpg" alt="" /></span></div>
+				                            <figcaption align="middle">
+				                            yo
+				                            </figcaption>
+											<div align="center"><span class="image fit"><img src="david_unblurred.jpeg" alt="" /></span></div>
+                                			Here, we can see that the colors are much more vibrant after the unblurring process. 
+											<div align="right"><span class="image fit"><img src="hybrid_test.jpg" alt="" /></span></div>
+				                            <figcaption align="middle">
+                                			Here, we can see the hybrid image using the debugging images for 1.2.
+                            				</figcaption>
+											<div align="left"><span class="image fit"><img src="larry.jpg" alt="" /></span></div>
+											<div align="left"><span class="image fit"><img src="wolf.jpg" alt="" /></span></div>											            
+											<div align="left"><span class="image fit"><img src="hybrid.jpg" alt="" /></span></div>
+				                            <figcaption align="middle">
+                                			Here, we can see my attempt at trying to blend my own face with a wolf. It didn't end up as well as I wanted to, but this is because our facial structures did not line up that well.
+                            				</figcaption>											
+                            				<div align="left"><span class="image fit"><img src="gauss5.jpg" alt="" /></span></div>
+                            				<div align="left"><span class="image fit"><img src="gauss4.jpg" alt="" /></span></div>
+                            				<div align="left"><span class="image fit"><img src="gauss3.jpg" alt="" /></span></div>
+                            				<div align="left"><span class="image fit"><img src="gauss2.jpg" alt="" /></span></div>
+                            				<div align="left"><span class="image fit"><img src="gauss1.jpg" alt="" /></span></div>
+				                            <figcaption align="middle">
+                                			Here, we can see the different levels of the gaussian filter applied to the me-wolf hybrid image that I used in 1.2
+                            				</figcaption>
+											<div align="left"><span class="image fit"><img src="laplac5.jpg" alt="" /></span></div>
+											<div align="left"><span class="image fit"><img src="laplac4.jpg" alt="" /></span></div>
+											<div align="left"><span class="image fit"><img src="laplac3.jpg" alt="" /></span></div>
+											<div align="left"><span class="image fit"><img src="laplac2.jpg" alt="" /></span></div>
+											<div align="left"><span class="image fit"><img src="laplac1.jpg" alt="" /></span></div>
+				                            <figcaption align="middle">
+                                			This is the result of the laplacian filter applied to the same image. We really break down the image to its solid lines after this process.
+                            				</figcaption>
+											<div align="left"><span class="image fit"><img src="apple.jpeg" alt="" /></span></div>
+											<div align="left"><span class="image fit"><img src="orange.jpeg" alt="" /></span></div>
+											<div align="left"><span class="image fit"><img src="apple_orange.png" alt="" /></span></div>
+				                            <figcaption align="middle">
+                                			For the test images of 1.4, I simply created a mask of black and white, making a mask of the same size as the orange and apple images. The left half was all white because I wanted to get the apple half from this side, while the right half was all black. My final image is in black and white because I did not have time to make it color, but making it color would be as simple as doing what I did in part 2.2. I would have had to process each channel separately and combine them at the end. 
+                            				</figcaption>
+											<div align="left"><span class="image fit"><img src="moon.jpg" alt="" /></span></div>
+											<div align="left"><span class="image fit"><img src="sun.jpg" alt="" /></span></div>
+											<div align="left"><span class="image fit"><img src="sun_moon.jpg" alt="" /></span></div>
+				                            <figcaption align="middle">
+				                            Here we can see my example I did. Similar to the test images, I had to align the images using the starter code provided, and the mask was simply a black and white image with a division down the middle. Again, creating this picture in color would simply be processing each rgb channel separately. 
+                            				</figcaption>
+										</div>
+									</div>
+									<header>
+										<h4>Part2</h4>
+									</header>
+									<p>Here, we really got into gradient domain fusion. Rather than using gaussian filters, we manipulated gradients to create our images.</p>
+										<div class = "row 50% uniform">
+											<div align="center"><span class="image fit"><img src="toy_problem.png" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="toy.jpeg" alt="" /></span></div>
+											<p>Here we computed all the x and y gradients of the original toy problem. Then by selecting one pixel from the original image, and solving the equations we generated, we were able to recreate the image.</p>
+											<p>And now we dive into the most fun I had with this project. 2.2 was the bread and butter of this project. I feel like everything up until this point was interesting in terms of understanding the theory, but with 2.2 we have a lot of freedom in terms of generating images with poisson blending. We have the freedom to create ridiculous images and it essentially imitates photoshop in terms of the final images we create. </p>
+											<div align="center"><span class="image fit"><img src="im4.jpg" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="im5.jpg" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="mask.jpg" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="poisson_blend.jpg" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="gustav_pet_penguin.jpg" alt="" /></span></div>
+											<p>On the test images, the picture of the hikers is the target, the penguin was the source, and the mask essentially captured the pixels from the penguin image that we wanted. Depending on how accurate the mask is, the image will blend more smoothly. this mask was pretty rough, but it was still able to produce decent images. This process involved using the algorithm described in class (image blending in 10 mins). I essentially expanded on part 2.1, created a more robust equation using all adjacent pixels rather than just 1, and processed the channnels separately in order to maintain color. I was also able to create a pretty amusing image with a penguin completely out of its environemtn by picking a different target image. The blending did not end that well because the mask isn't perfect and the difference in the penguin's skin tone vs the background is a little too much</p>
+											<div align="center"><span class="image fit"><img src="beach.jpg" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="moon_and_earth.jpg" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="beach_mask.jpg" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="moon_earth_blend.jpeg" alt="" /></span></div>
+											<p>As for my own image, I was able to create a pretty cool blend of a beach front and a space image. Again, the blending won't be as smooth if there a huge color discrepancy between where you are trying to blend the images.  </p>
+											</section>
+											<div align="center"><span class="image fit"><img src="city.jpg" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="galaxy.jpg" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="city_mask.jpg" alt="" /></span></div>
+											<div align="center"><span class="image fit"><img src="city_galaxy.jpg" alt="" /></span></div>
+											<p>Here, we have a case where the blending did not go as well as I wanted it to. You the blending isn't that smooth and theres a somewhat visible discrepancy between the images. I think that the overall lesson is that the more accurate the masks are, the better the final result will be, and that the images shouldnt differ too extremely in color in the place that we are trying to blend.</p>
+
+										</div>
+									</div>
+
+									<h4>Poisson vs Laplacian?</h4>
+									<div class=""><span class="image fit"><img src="apple_orange.png" alt="" /></span>
+									<div class=""><span class="image fit"><img src="apple_orange.jpg" alt="" /></span>
+									<p>Here we can see the difference between Laplacian stacks to blend an image and poisson blending. Although it's a little difficult to compare because one is in color, its clear that the laplacian blending did better. I think the difference between using least squares and poisson blending is responsible for the discrepancy. From what I've experienced, laplacian blending is better for two images that are nowhere near similar, and poisson blending is better for images where you're trying to create a blend in an area that has similar hues in the source and target image.</p>
+									<div class=""><span class="image fit"><img src="out_path/turkmen2_color.jpg" alt="" /></span></div>	
+								</section>
+
+						</section>
+
+				</div>
+			</section>
+			
+
+	</body>
+</html>
