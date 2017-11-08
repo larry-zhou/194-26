@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<h1>template taken from HTML5 Webtemplates.co.uk</h1>
+		<title> </title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body>
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+				<header class="major">
+					<h2>CS 194-26 Project 1</h2>
+					<p>by Larry Zhou</p>
+				</header>
+				<div class="container">
+						
+					<!-- Content -->
+						<section id="content">
+
+							<!-- Text -->
+								<section>
+									<h3>Overview</h3>
+									We were given our first project based on the aspirations of Sergei Mikailovich Prokudin-Gorskii. By putting together his glass plate images that were provided by the Library of Congress, I was able to reproduce a color image using three color channel images. The metric I decided to use was the sum squared difference because it was more intuitive to me.  </p>
+
+									<hr />
+									
+									<header>
+										<h3>JPG images</h3>
+									</header>
+									<p>The jpg images were relatively straightforward to colorize. While using the blue channel as a reference, we checked the green and red channels against it to find the best alignment.All it took iterating through a pixel displacement of [-15, 15] using a for loop to find the smallest SSD (sum of squared differences) in order to determine a good alignment. </p>
+
+								</section>
+
+							<!-- Image -->
+								<section>
+									<h3>JPG</h3>
+									<div class="box alt">
+										<div class="row 50% uniform">
+											<div align="center"><span class="image fit"><img src="out_path/cathedral_color.jpg" alt="" /></span></div>
+				                            <figcaption align="middle">
+                                			R[0, -1], G[2, -1]
+                            				</figcaption>
+											<div align="right"><span class="image fit"><img src="out_path/monastery_color.jpg" alt="" /></span></div>
+				                            <figcaption align="middle">
+                                			R[3, 2], G[-3, 1]
+                            				</figcaption>
+											<div align="left"><span class="image fit"><img src="out_path/nativity_color.jpg" alt="" /></span></div>
+				                            <figcaption align="middle">
+                                			R[7, 1], G[3, 1]
+                            				</figcaption>
+											<div class="4u 6u(3)"><span class="image fit"><img src="out_path/settlers_color.jpg" alt="" /></span></div>
+				                            <figcaption align="middle">
+                                			R[14, -1], G[7, 0]
+                            				</figcaption>
+										</div>
+									</div>
+									<header>
+										<h4>TIF images</h4>
+									</header>
+									<p>The TIF images were much more difficult to work with due to the sizes of the r, g, and b matrices. Thus, in order to combat this, I used an image pyramid as suggested. I would continually scale a plate by half until the matrix that represented it had a length less than 200, while keeping track of the amount of times I scaled. I would then find the relatively best displacement by rolling the red and green matrices against the blue one by looking through displacements [-15, 15]. I would then recursively call the function and multiply the relatively best displacement by 2 and search between displacements [x-3, x+3] and [y-3, y+3] in the image that was twice the scale as the previous one, and continually do it until the scale reached the original size. </p>
+										<div class = "row 50% uniform">
+											<div align="center"><span class="image fit"><img src="out_path/emir_color.jpg" alt="" /></span></div>
+											<p>R[18, 17], G[45, 9]</p>
+											<div align="center"><span class="image fit"><img src="out_path/harvesters_color.jpg" alt="" /></span></div>
+											<p>R[123, 8], G[58, 11]</p>
+											<div align="center"><span class="image fit"><img src="out_path/icon_color.jpg" alt="" /></span></div>
+											<p>R[89, 22], G[40, 16]</p>
+											<div align="center"><span class="image fit"><img src="out_path/lady_color.jpg" alt="" /></span></div>
+											<p>R[114, -16], G[43, -6]</p>
+											<div align="center"><span class="image fit"><img src="out_path/self_portrait_color.jpg" alt="" /></span></div>
+											<p>R[173, -3], G[76, -1]</p>
+											<div align="center"><span class="image fit"><img src="out_path/three_generations_color.jpg" alt="" /></span></div>
+											<p>R[111, 8], G[52, 6]</p>
+											<div align="center"><span class="image fit"><img src="out_path/train_color.jpg" alt="" /></span></div>
+											<p>R[91, 3], G[41, -2]</p>
+											<div align="center"><span class="image fit"><img src="out_path/turkmen_color.jpg" alt="" /></span></div>
+											<p>R[114, 4], G[55, 6]</p>
+											<div align="center"><span class="image fit"><img src="out_path/village_color.jpg" alt="" /></span></div>
+											<p>R[135, -15], G[62, -7]</p>
+											<section>
+											<h1 alight="center">A few additional images I grabbed from the Library of Congress website are below</h1>
+											<div align="center"><span class="image fit"><img src="out_path/windmills_color.jpg" alt="" /></span></div>
+											<p>Windmills R[125, 21], G[55, 10]</p>
+											<div align="center"><span class="image fit"><img src="out_path/melon_vendor_color.jpg" alt="" /></span></div>
+											<p>Melon Vendor R[178, 8], G[81, 4]</p>
+											<div align="center"><span class="image fit"><img src="out_path/tea_station_color.jpg" alt="" /></span></div>
+											<p>Tea Station R[104, -14], G[52, -4]</p>	
+											</section>										
+										</div>
+									</div>
+
+									<h4>Failures</h4>
+									<p>My algorithm failed to align the emir image. I believe that it had to do with the sharp contrast between the red channel and blue channel, thus causing the image to not align correctly. My algorithm also worked better on the cathedral when I didn't cut off 5% of the borders. Typically, if colors that were next to eachother differed drastically and were distinct, the colored image would end up better. For better results, playing around with the borders or increasing the range of the exhaustive search could have helped. Below is an example of what happened when I didn't crop 5% of the image off to remove the borders.</p>
+									<div class=""><span class="image fit"><img src="out_path/turkmen2_color.jpg" alt="" /></span></div>	
+								</section>
+
+						</section>
+
+				</div>
+			</section>
+			
+
+	</body>
+</html>
